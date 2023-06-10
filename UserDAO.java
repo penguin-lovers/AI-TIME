@@ -13,16 +13,16 @@ public class UserDAO {
 	
 	public UserDAO() {
 		try {
-			String dbURL = "jdbc:mysql://localhost/penguinlovers?characterEncoding=UTF-8&serverTimezone=UTC";
-			String dbID = "penguinlovers";
-			String dbPassword = "qlalfqjsgh1102!";
+          		String dbURL = "jdbc:mysql://localhost:3306/bbs?serverTimezone=Asia/Seoul&useSSL=false";
+         		String dbID = "root";
+         		String dbPassword = "root";
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	// ÇÏ³ªÀÇ °èÁ¤¿¡ ´ëÇÑ ·Î±×ÀÎ ½Ãµµ¸¦ ÇØÁÖ´Â ÇÔ¼ö
+	// í•˜ë‚˜ì˜ ê³„ì •ì— ëŒ€í•œ ë¡œê·¸ì¸ ì‹œë„ë¥¼ í•´ì£¼ëŠ” í•¨ìˆ˜
 	public int login(String userID, String userPassword) {
 		String SQL = "SELECT userPassword FROM USER WHERE userID = ?";
 		try {
@@ -31,16 +31,16 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getString(1).equals(userPassword)) {
-					return 1; // ·Î±×ÀÎ ¼º°ø
+					return 1; // ë¡œê·¸ì¸ ì„±ê³µ
 				}
 				else
-					return 0; // ºñ¹Ğ¹øÈ£ ºÒÀÏÄ¡
+					return 0; // ë¹„ë°€ë²ˆí˜¸ ë¶ˆì¼ì¹˜
 			}
-			return -1; // ¾ÆÀÌµğ°¡ ¾øÀ½
+			return -1; // ì•„ì´ë””ê°€ ì—†ìŒ
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -2; // µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return -2; // ë°ì´í„°ë² ì´ìŠ¤ ì˜¤ë¥˜
 	}
 	
 	public int join(User user) {
@@ -56,6 +56,6 @@ public class UserDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return -1; // µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return -1; // ë°ì´í„°ë² ì´ìŠ¤ ì˜¤ë¥˜
 	}
 }
