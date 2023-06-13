@@ -34,7 +34,7 @@
 				} else {
 					BbsDAO bbsDAO = new BbsDAO();
 					int result = bbsDAO.write(bbs.getBbsTitle(), userID, bbs.getBbsContent());
-					if (result == -1) {
+					if (result == -2) {
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
 						script.println("alert('글쓰기에 실패했습니다.')");
